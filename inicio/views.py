@@ -31,5 +31,5 @@ def primer_template(request):
     # return HttpResponse(render_template)
 
     
-    return render(request, 'primer_template')
+    return render(request, 'primer_template.html', datos)
 
