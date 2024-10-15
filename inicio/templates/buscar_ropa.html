@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% load static %}
+
+
+{% block head_title %}
+Search Clothes
+{% endblock head_title %}
+
+{% block header_h1 %}
+Search Clothes
+{% endblock header_h1 %}
+
+{% block main %}
+
+<form action= {% url "inicio:buscar_ropa" %}></form>
+
+{% endblock main %}

@@ -1,9 +1,10 @@
 from django.urls import path
-from inicio.views import inicio, home, ropa_nueva, primer_template
+from inicio.views import inicio, home, ropa_nueva, buscar_ropa, about
 
 urlpatterns = [
-    path('', inicio),
-    path('home/', home),
-    path('ropa-nueva/', ropa_nueva),
-    path('primer-template/', primer_template)
+    path('', inicio, name='inicio'),
+    path('home/', home, name='home'),
+    path('ropa-nueva/', ropa_nueva, name='ropa_nueva'),
+    path('buscar-ropa/', buscar_ropa, name='buscar_ropa'),
+    path('about/', about, name='about')
     ]
