@@ -1,6 +1,4 @@
 from django.http import HttpResponse
-from django.template import Template, Context
-from datetime import datetime
 from django.shortcuts import render
 from inicio.models import Ropa
 
@@ -8,15 +6,20 @@ def inicio(request):
     return HttpResponse ('Blank')
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'inicio/index.html')
 
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'inicio/about.html')
+
+def nueva_ropa(request):
+    
+    print('Request', request)
+    print('POST', request.POST)
+    
+    ropa = Ropa(request.POST.get('type'), request.POST.get('brand'), request.POST.get('size'))
+    ropa.save()
+
+    return render(request, 'inicio/nueva_ropa.html', {'ropa': ''})
 
 def buscar_ropa(request):
-    return render(request, 'buscar_ropa.html')
-
-def ropa_nueva(request):
-    return render(request, 'ropa_nueva.html', {})
-
-
+    return render(request, 'inicio/buscar_ropa.html', {'ropa': ''})
