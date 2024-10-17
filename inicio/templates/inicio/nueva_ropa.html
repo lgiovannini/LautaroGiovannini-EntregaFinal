@@ -14,7 +14,7 @@ Add Clothes
 
 <form action="{% url "inicio:nueva_ropa" %}" method="POST">
     {% csrf_token %}
-    <p>
+    {% comment %} <p>
         Type:
         <input type="text" name="type">
     </p>
@@ -25,7 +25,9 @@ Add Clothes
     <p>
         Size:
         <input type="text" name="size">
-    </p>
+    </p> {% endcomment %}
+
+    {{form}}
 
     <button>Add</button>
 

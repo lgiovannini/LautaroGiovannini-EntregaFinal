@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from inicio.models import Ropa
+from inicio.forms import CrearRopaForm, BuscarRopaForm
 
 def inicio(request):
     return HttpResponse ('Blank')
@@ -11,15 +12,27 @@ def home(request):
 def about(request):
     return render(request, 'inicio/about.html')
 
+
 def nueva_ropa(request):
     
-    print('Request', request)
-    print('POST', request.POST)
+    formulario = CrearRopaForm()
     
-    ropa = Ropa(request.POST.get('type'), request.POST.get('brand'), request.POST.get('size'))
-    ropa.save()
+    if request.method == 'POST':
+        formulario = CrearRopaForm(request.POST)
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            ropa = Ropa(type=data.get('type'), brand=data.get('brand'), size=data.get('size'))
+            ropa.save()
+            return redirect('inicio:buscar_ropa')
 
-    return render(request, 'inicio/nueva_ropa.html', {'ropa': ''})
+    
+    return render(request, 'inicio/nueva_ropa.html', {'form': formulario})
 
 def buscar_ropa(request):
-    return render(request, 'inicio/buscar_ropa.html', {'ropa': ''})
+    
+    formulario = BuscarRopaForm(request.GET)
+    if formulario.is_valid():
+        type = formulario.cleaned_data.get('type')
+        ropas = Ropa.objects.filter(type__icontains=type)
+        
+    return render(request, 'inicio/buscar_ropa.html', {'ropas': ropas, 'form' : formulario})
