@@ -20,7 +20,11 @@ Search Clothes
 {% if ropas %}
 <ul>
     {% for ropa in ropas %}
-    <li>{{ropa}}</li>
+    <li>{{ropa}} 
+        | <a href={% url "inicio:ver_ropa" ropa.id %}>Ver más</a>
+        | <a href={% url "inicio:editar_ropa" ropa.id %}>Editar</a> 
+        | <a href={% url "inicio:eliminar_ropa" ropa.id %}>Eliminar</a> 
+    </li>
     {% endfor %}
 </ul>
 {% else %}

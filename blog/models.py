@@ -6,4 +6,4 @@ class Ropa(models.Model):
     size = models.CharField(max_length=15)
     
     def __str__(self):
-        return f'{self.type} {self.brand} {self.size}'
+        return f'{self.type} - {self.brand} - {self.size}'

@@ -14,18 +14,6 @@ Add Clothes
 
 <form action="{% url "inicio:nueva_ropa" %}" method="POST">
     {% csrf_token %}
-    {% comment %} <p>
-        Type:
-        <input type="text" name="type">
-    </p>
-    <p>
-        Brand:
-        <input type="text" name="brand">
-    </p>
-    <p>
-        Size:
-        <input type="text" name="size">
-    </p> {% endcomment %}
 
     {{form}}
 

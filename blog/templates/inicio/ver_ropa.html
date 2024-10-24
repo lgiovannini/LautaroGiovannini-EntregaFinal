@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block head_title %}
+Clothes
+{% endblock head_title %}
+
+{% block header_h1 %}
+{{ropa}}
+{% endblock header_h1 %}
+
+{% block main %}
+
+<ul>
+    <li>Type: {{ropa.type}}</li>
+    <li>Brand: {{ropa.brand}}</li>
+    <li>Size: {{ropa.size}}</li>
+</ul>
+
+<a href={% url "inicio:buscar_ropa" %}>Back</a>
+
+{% endblock main %}
